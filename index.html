@@ -11,25 +11,36 @@
 </head>
 <body>
     <h1>Autenticació amb Google de Yeray Blanco</h1>
+    
     <div id="g_id_onload"
          data-client_id="844803673723-1nbd6qov6muo4rgi27ri2645r2cg939q.apps.googleusercontent.com"
          data-callback="onSignIn">
     </div>
+    
     <div class="g_id_signin"
          data-type="standard">
     </div>
+    
+    <h2 id="missatge-benvinguda" style="display:none;">Missatge de benvinguda</h2>
+    
     <button id="boto-sortir" style="display:none;" onclick="signOut()">Desconnectar</button>
 
     <script>
-        function onSignIn(response) {
+       function onSignIn(response) {
             var id_token = response.credential;
             console.log("ID Token: " + id_token);
 
+            const dades = JSON.parse(decodeURIComponent(escape(atob(id_token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')))));
+            
+            document.getElementById('missatge-benvinguda').textContent = "Benvingut/da, " + dades.name;
+            document.getElementById('missatge-benvinguda').style.display = 'block';
+
             document.getElementById('boto-sortir').style.display = 'block';
             document.querySelector('.g_id_signin').style.display = 'none';
-        }
+        } 
 
         function signOut() {
+            document.getElementById('missatge-benvinguda').style.display = 'none';
             document.getElementById('boto-sortir').style.display = 'none';
             document.querySelector('.g_id_signin').style.display = 'block';
         }
