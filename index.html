@@ -3,27 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign-In</title>
+    <title>Autenticació Google - Yeray Blanco</title>
     <!-- Script de Google Identity Services -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- Metadada amb l'ID de client d'OAuth 2.0 -->
     <meta name="google-signin-client_id" content="844803673723-1nbd6qov6muo4rgi27ri2645r2cg939q.apps.googleusercontent.com">
+    <!-- Estils CSS Moderns i Espectaculars -->
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+        .card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        h2 {
+            font-size: 1.4rem;
+            color: #2b6cb0;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .g_id_signin {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #boto-sortir {
+            background-color: #e53e3e;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 6px rgba(229, 62, 62, 0.3);
+            margin-top: 20px;
+        }
+        #boto-sortir:hover {
+            background-color: #c53030;
+        }
+        #boto-sortir:active {
+            transform: scale(0.98);
+        }
+    </style>
 </head>
 <body>
-    <h1>Autenticació amb Google de Yeray Blanco</h1>
-    
-    <div id="g_id_onload"
-         data-client_id="844803673723-1nbd6qov6muo4rgi27ri2645r2cg939q.apps.googleusercontent.com"
-         data-callback="onSignIn">
+    <div class="card">
+        <h1>Autenticació amb Google</h1>
+        <p style="color: #666; margin-bottom: 25px; font-size: 0.95rem;">Yeray Blanco</p>
+        
+        <div id="g_id_onload"
+             data-client_id="844803673723-1nbd6qov6muo4rgi27ri2645r2cg939q.apps.googleusercontent.com"
+             data-callback="onSignIn">
+        </div>
+        
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="rectangular"
+             data-theme="outline"
+             data-text="sign_in_with"
+             data-size="large"
+             data-logo_alignment="left">
+        </div>
+        
+        <h2 id="missatge-benvinguda" style="display:none;">Missatge de benvinguda</h2>
+        
+        <button id="boto-sortir" style="display:none;" onclick="signOut()">Desconnectar</button>
     </div>
-    
-    <div class="g_id_signin"
-         data-type="standard">
-    </div>
-    
-    <h2 id="missatge-benvinguda" style="display:none;">Missatge de benvinguda</h2>
-    
-    <button id="boto-sortir" style="display:none;" onclick="signOut()">Desconnectar</button>
 
     <script>
         function onSignIn(response) {
@@ -46,4 +120,5 @@
         }
     </script>
 </body>
+</html>
 </html>
