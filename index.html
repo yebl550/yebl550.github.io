@@ -26,7 +26,7 @@
     <button id="boto-sortir" style="display:none;" onclick="signOut()">Desconnectar</button>
 
     <script>
-       function onSignIn(response) {
+        function onSignIn(response) {
             var id_token = response.credential;
             console.log("ID Token: " + id_token);
 
@@ -37,7 +37,7 @@
 
             document.getElementById('boto-sortir').style.display = 'block';
             document.querySelector('.g_id_signin').style.display = 'none';
-        } 
+        }
 
         function signOut() {
             document.getElementById('missatge-benvinguda').style.display = 'none';
